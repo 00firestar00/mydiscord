@@ -40,8 +40,6 @@ global.toggleShowsOnBoot = () => {
     global.config.showsOnBoot = !global.config.showsOnBoot;
     saveConfig();
 }
-if (global.config.showsOnBoot === true)
-    global.openWelcomeModal();
 
 global.getFileOpener = () => {
     switch (process.platform) {

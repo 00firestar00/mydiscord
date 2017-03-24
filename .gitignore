@@ -1,6 +1,6 @@
+build/
+dist/
+.idea/
+.coverage
+__pycache__/
 *.pyc
-*.buildinfo
-*.egg-info
-.DS_Store
-node_modules
-

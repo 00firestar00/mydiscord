@@ -1,0 +1,1786 @@
+
+/*
+    Modified from the Dark Matter theme: https://github.com/cosmicsalad/Discord-Themes-and-Plugins
+    None of the extra "Better Discord" classes were styled.
+    This was designed to be used with BeautifulDiscord and MyDiscord. https://github.com/justinoboyle/mydiscord
+    Theme is tested on Discord Canary (for Linux)
+
+    The theme can be modified quickly with the variables here without digging into the CSS or doing replace-alls
+    They also allow you to keep a more unified theme.
+
+    IMPORTANT: Make sure the link you use for the background image begins with https://
+*/
+:root {
+    --background-image: url(https://i.imgur.com/QJeEa9J.png);
+    --accent-primary-color: #25ACE8;
+    --accent-secondary-color: #1D6586;
+    --text-light: #FFFFFF;
+    --text-color: #CCCCCC;
+    --text-dark: #888888;
+    --mention-hilight: rgba(122, 188, 234, 0.2);
+    --search-hilight: rgba(0, 102, 204, 0.2);
+    --primary-color-dark: rgba(0, 0, 0, 0.9);
+    --primary-color: rgba(0, 0, 0, 0.7);
+    --primary-color-light: rgba(0, 0, 0, 0.4);
+    --secondary-color-dark: rgba(35, 35, 35, 0.5);
+    --secondary-color: rgba(120, 120, 120, 0.5);
+    --secondary-color-light: rgba(210, 210, 210, 0.5);
+}
+
+/*
+                     _                _                                   _
+  __ _ _ __  _ __   | |__   __ _  ___| | ____ _ _ __ ___  _   _ _ __   __| |
+ / _` | '_ \| '_ \  | '_ \ / _` |/ __| |/ / _` | '__/ _ \| | | | '_ \ / _` |
+| (_| | |_) | |_) | | |_) | (_| | (__|   < (_| | | | (_) | |_| | | | | (_| |
+ \__,_| .__/| .__/  |_.__/ \__,_|\___|_|\_\__, |_|  \___/ \__,_|_| |_|\__,_|
+      |_|   |_|                           |___/
+*/
+
+.app,
+.callout-backdrop {
+    background: linear-gradient(transparent, var(--primary-color)), var(--background-image) !important;
+    background-size: cover !important;
+}
+
+/*
+                           _                           _
+  ___ ___  _ __ ___    ___| | ___ _ __ ___   ___ _ __ | |_ ___
+ / __/ _ \| '__/ _ \  / _ \ |/ _ \ '_ ` _ \ / _ \ '_ \| __/ __|
+| (_| (_) | | |  __/ |  __/ |  __/ | | | | |  __/ | | | |_\__ \
+ \___\___/|_|  \___|  \___|_|\___|_| |_| |_|\___|_| |_|\__|___/
+
+*/
+
+/* All the scroll bars */
+.scroller-wrap .scroller::-webkit-scrollbar-thumb,
+.quickswitcher .scroll-wrap .scroller::-webkit-scrollbar-thumb,
+.search-results-wrap .scroller-wrap .scroller::-webkit-scrollbar-thumb,
+.theme-dark .search-results-wrap .scroller-wrap .scroller::-webkit-scrollbar-thumb,
+.quickswitcher-container .quickswitcher .scroller-wrap .scroller::-webkit-scrollbar-thumb {
+    border: 3px solid transparent !important;
+    background-color: var(--primary-color-light) !important;
+    background-clip: content-box !important
+}
+
+.scroller-wrap .scroller::-webkit-scrollbar-track-piece,
+.quickswitcher .scroll-wrap .scroller::-webkit-scrollbar-track-piece,
+.search-results-wrap .scroller-wrap .scroller::-webkit-scrollbar-track-piece,
+.theme-dark .search-results-wrap .scroller-wrap .scroller::-webkit-scrollbar-track-piece,
+.quickswitcher-container .quickswitcher .scroller-wrap .scroller::-webkit-scrollbar-track-piece {
+    border: none !important;
+    background: none !important;
+}
+
+/*
+                 _         _                _                                   _
+ _ __ ___   __ _(_)_ __   | |__   __ _  ___| | ____ _ _ __ ___  _   _ _ __   __| |___
+| '_ ` _ \ / _` | | '_ \  | '_ \ / _` |/ __| |/ / _` | '__/ _ \| | | | '_ \ / _` / __|
+| | | | | | (_| | | | | | | |_) | (_| | (__|   < (_| | | | (_) | |_| | | | | (_| \__ \
+|_| |_| |_|\__,_|_|_| |_| |_.__/ \__,_|\___|_|\_\__, |_|  \___/ \__,_|_| |_|\__,_|___/
+                                                |___/
+*/
+
+.links,
+.chat,
+.layers,
+.typing,
+.content,
+.guild-channels,
+.private-channels,
+.guild-header header,
+.messages-wrapper,
+#voice-connection {
+    background: transparent !important;
+}
+
+/* Server list area */
+.guilds-wrapper {
+    background: var(--primary-color-light) !important
+}
+
+/* Channels list area */
+.channels-wrap {
+    background: var(--primary-color-light)
+}
+
+/* Chat area */
+.content .flex-spacer {
+    background: var(--primary-color-light)
+}
+
+/* User list area */
+.channel-members {
+    background: var(--primary-color-light) !important
+}
+
+/*
+server list section             _ _     _                   _   _
+ ___  ___ _ ____   _____ _ __  | (_)___| |_   ___  ___  ___| |_(_) ___  _ __
+/ __|/ _ \ '__\ \ / / _ \ '__| | | / __| __| / __|/ _ \/ __| __| |/ _ \| '_ \
+\__ \  __/ |   \ V /  __/ |    | | \__ \ |_  \__ \  __/ (__| |_| | (_) | | | |
+|___/\___|_|    \_/ \___|_|    |_|_|___/\__| |___/\___|\___|\__|_|\___/|_| |_|
+
+*/
+.create-guild-container {
+    background: none !important;
+}
+
+.create-guild-container .action {
+    background: var(--primary-color);
+}
+
+.create-guild-container .create-or-join .actions .or {
+    -webkit-filter: opacity(0.9) invert();
+    color: black;
+}
+
+.create-guild-container .action.create .action-icon,
+.create-guild-container .action.join .action-icon {
+    -webkit-filter: invert() hue-rotate(150deg);
+}
+
+.create-guild-container h5,
+.create-guild-container .action.create .action-header {
+    color: var(--accent-primary-color);
+}
+
+.create-guild-container .action.create .btn-primary {
+    background-color: var(--accent-primary-color) !important;
+}
+
+.create-guild-container .action.create:hover .btn-primary {
+    background-color: var(--accent-secondary-color) !important;
+}
+
+.create-guild-container .form-actions .btn-default {
+    background: var(--secondary-color);
+    border: 0;
+}
+
+.create-guild-container .create-guild .guild-form .region-select {
+    background: var(--secondary-color);
+}
+
+.create-guild-container .create-guild .guild-form .region-select button {
+    background-color: var(--accent-secondary-color);
+    color: var(--text-color);
+}
+
+.create-guild-container .create-guild .guild-form .region-select:hover button {
+    background-color: var(--accent-primary-color);
+    border-color: var(--accent-primary-color);
+    color: var(--text-color);
+}
+
+.create-guild-container .create-guild .guild-form .region-select:hover .region-select-inner {
+    border-color: var(--accent-primary-color);
+}
+
+.create-guild-container .create-guild .guild-form .region-select-name {
+    color: var(--text-color) !important;
+}
+
+.avatar-uploader-inner {
+    background-color: var(--accent-secondary-color) !important;
+    border: none !important;
+}
+
+.region-select-modal {
+    background: var(--primary-color);
+}
+
+.region-select-modal .region-select-modal-header {
+    color: var(--accent-primary-color);
+}
+
+.region-select-modal .region-select-modal-option {
+    background: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.region-select-modal .region-select-modal-option:hover {
+    border-color: var(--accent-primary-color);
+}
+
+.region-select-modal .region-select-modal-option .region-select-name {
+    color: var(--text-color) !important;
+}
+
+.guilds-wrapper .guilds .guild:first-of-type:hover {
+    border-radius: 100% !important;
+}
+
+.guilds-wrapper .guilds .guild.active {
+    border-radius: 100% !important;
+}
+
+.guild-header-open ul {
+    opacity: 1 !important;
+}
+
+.guilds-wrapper .guilds .guilds-add {
+    background: var(--primary-color-dark) !important;
+    color: var(--text-color);
+    font-size: 25px !important;
+    border: 1px dashed var(--text-color) !important;
+}
+
+.guilds-wrapper .guilds .guilds-add:hover {
+    color: var(--text-light);
+}
+
+.platform-osx .guilds-wrapper {
+    padding-top: 30px;
+}
+
+.guilds-wrapper {
+    border-right: 1px solid var(--primary-color-light);
+    box-shadow: inset -10px 0 20px -10px var(--secondary-color-dark);
+}
+
+.guilds-wrapper .guild-separator {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: -5px;
+    display: none;
+}
+
+.guilds-wrapper .guild-separator:after {
+    background: transparent;
+}
+
+.guild-header header span {
+    margin-left: -7px;
+}
+
+.guild-header header {
+    box-shadow: none !important;
+    color: var(--text-color);
+}
+
+.guild-channels header h2 {
+    padding: 0 18px;
+}
+
+.guild-channels .channel-text .channel-name,
+.guild-channels .channel-voice .channel-name {
+    font-size: 0.9em;
+}
+
+.guild-channels .channel-text a {
+    padding: 8px 6px 10px 18px;
+}
+
+.guild-channels header h2,
+.guild-channels .channel a {
+    color: var(--text-color);
+}
+
+.guilds-wrapper .guilds {
+    padding: 18px 20px 85px 15px;
+}
+
+.guilds-wrapper .guilds .friends-online {
+    margin-top: 10px !important;
+}
+
+.guilds-wrapper .guilds .guild .guild-inner {
+    background: var(--primary-color) !important;
+}
+
+.guilds-wrapper .guilds .guild.active:first-of-type .guild-inner {
+    background: var(--accent-primary-color) !important;
+}
+
+.guilds-wrapper .guilds .guild .guild-inner:hover {
+    background: var(--accent-secondary-color) !important;
+}
+
+.guilds-wrapper .guilds .guild .guild-inner a,
+.guilds-wrapper .guilds .guild,
+.guilds-wrapper .guilds .guild .avatar-small {
+    width: 40px;
+    height: 40px;
+}
+
+.guilds-wrapper .guilds .guild .avatar-small {
+    width: 40px;
+    height: 40px;
+    background-size: 40px 40px;
+}
+
+.guilds-wrapper .guilds .guild .guild-inner {
+    line-height: 40px;
+}
+
+.guilds-wrapper .guilds .friends-icon {
+    width: 40px;
+    height: 40px;
+    background-size: 25px 19px;
+}
+
+.guilds-wrapper .guilds .friends-icon {
+    padding-top: 0;
+}
+
+.guilds-wrapper .guilds .friends-icon:after {
+    display: block;
+    width: 40px;
+    height: 40px;
+    content: '';
+}
+
+.guilds-wrapper .guilds .guild.audio .guild-inner:after {
+    background-size: 12px;
+    background-color: var(--primary-color);
+}
+
+.guilds-wrapper .guilds .guild:before,
+.guilds-wrapper .guilds .guild.unread:before,
+.guilds-wrapper .guilds .guild.selected:before {
+    left: -19px;
+    transition: 0.2s ease-in-out all;
+}
+
+.guilds-wrapper .guilds .guild.unread:not(.selected):before,
+.guild-channels .channel-text.unread:not(.selected):not(.channel-muted):before {
+    background: var(--accent-primary-color);
+}
+
+.guilds-wrapper .guilds .guild.active .guild-inner:before {
+    background: var(--text-light) !important;
+}
+
+.guilds-wrapper .guilds .friends-online {
+    color: var(--text-color);
+    font-size: 9px;
+    margin: 15px 0 15px -7px;
+    line-height: 20px;
+    width: 55px;
+    height: 20px;
+    border-radius: 25px;
+    overflow: hidden;
+    background: var(--primary-color-light);
+
+}
+
+.guilds-wrapper .guilds-error {
+    width: 40px;
+    height: 40px;
+    line-height: 36px;
+}
+
+.guild-channels header h2,
+.private-channels header {
+    opacity: .6;
+}
+
+.guild-channels .channel:hover {
+    background: var(--primary-color-light) !important;
+}
+
+.private-channels {
+    overflow: visible !important;
+}
+
+.private-channels .search-bar {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding-left: 91px;
+    margin-left: -81px;
+}
+
+.private-channels .search-bar .search-bar-inner {
+    background: var(--primary-color-dark) !important;
+}
+
+.private-channels .search-bar input {
+    background: var(--primary-color) !important;
+}
+
+.guild-channels .channel.selected,
+.private-channels .channel.selected,
+.private-channels .search-result.selected,
+.private-channels .search-result:hover {
+    background: var(--primary-color-light) !important;
+}
+
+.guild-channels ul .channel:not(.selected):hover,
+.private-channels .channel:not(.selected):hover {
+    background: var(--primary-color-light) !important;
+}
+
+.guild-channels .channel:not(.selected):before,
+.guild-channels .channel.selected:before,
+.guild-channels .channel.selected:hover:before,
+.private-channels .channel:not(.selected):before,
+.private-channels .channel.selected:before,
+.private-channels .channel.selected:hover:before,
+.private-channels .search-result.selected:before,
+.private-channels .search-result:hover:before {
+    border-left: 2px solid var(--accent-secondary-color) !important;
+}
+
+.private-channels .channel .icon-friends {
+    background-color: var(--primary-color) !important;
+}
+
+.guild-channels .channel-text.unread:not(.selected):not(.channel-muted):before {
+    left: -8px;
+}
+
+/*
+      _   channel section          _                     _   _
+  ___| |__   __ _ _ __  _ __   ___| |___   ___  ___  ___| |_(_) ___  _ __
+ / __| '_ \ / _` | '_ \| '_ \ / _ \ / __| / __|/ _ \/ __| __| |/ _ \| '_ \
+| (__| | | | (_| | | | | | | |  __/ \__ \ \__ \  __/ (__| |_| | (_) | | | |
+ \___|_| |_|\__,_|_| |_|_| |_|\___|_|___/ |___/\___|\___|\__|_|\___/|_| |_|
+
+*/
+
+.btn-hamburger {
+    margin-right: -30px;
+}
+
+.btn-hamburger span {
+    background: var(--text-light);
+}
+
+#voice-connection,
+.account {
+    background: transparent;
+}
+
+#voice-connection .btn,
+.account .btn {
+    background: transparent;
+    box-shadow: none !important;
+}
+
+#voice-connection .btn-info:after,
+#voice-connection .btn-disconnect:after,
+.account .btn-settings:after {
+    opacity: 0.3;
+}
+
+#voice-connection .btn-info,
+.account .btn-deafen,
+.account .btn-mute {
+    border-right: none;
+}
+
+#voice-connection .btn-group,
+.account .btn-deafen,
+.account .btn-settings {
+    box-shadow: none !important;
+}
+
+#voice-connection .btn-group,
+.account .btn-group {
+    border: none;
+}
+
+.account .avatar-small {
+    margin: 0 0 0 10px;
+}
+
+.message-group .comment {
+    background: transparent !important;
+    border: none !important;
+}
+
+/*
+      _           _  chat section     _   _
+  ___| |__   __ _| |_   ___  ___  ___| |_(_) ___  _ __
+ / __| '_ \ / _` | __| / __|/ _ \/ __| __| |/ _ \| '_ \
+| (__| | | | (_| | |_  \__ \  __/ (__| |_| | (_) | | | |
+ \___|_| |_|\__,_|\__| |___/\___|\___|\__|_|\___/|_| |_|
+
+*/
+
+.search .search-bar {
+    background-color: var(--primary-color-light) !important;
+}
+
+.search-answer,
+.search-filter {
+    background-color: var(--accent-secondary-color) !important;
+}
+
+.search-popout {
+    background-color: var(--primary-color);
+}
+
+.search-popout .option:after {
+    background: transparent;
+}
+
+.search-popout .option.selected {
+    background-color: var(--primary-color) !important;
+    box-shadow: 0 0 5px var(--primary-color);
+}
+
+.search-popout .option.selected:after {
+    background: transparent !important;
+}
+
+.search-results-wrap {
+    background-color: var(--primary-color-dark) !important;
+}
+
+.search-results-wrap .search-header {
+    background: transparent !important;
+}
+
+.search-results-wrap .channel-separator:before {
+    border: none;
+}
+
+.search-results-wrap .channel-separator .channel-name {
+    background-color: transparent !important;
+}
+
+.search-results-wrap .search-result:before {
+    background: transparent !important;
+    border-top: 1px solid var(--primary-color-light);
+}
+
+.search-results-wrap .search-result:after {
+    background: transparent !important;
+}
+
+.search-results-wrap .search-result:not(.expanded) .search-result-message.hit,
+.search-results-wrap .search-result.expanded {
+    border: 2px solid var(--primary-color-light) !important;
+}
+
+.search-results-wrap .search-result .hit {
+    background-color: var(--search-hilight) !important;
+    box-shadow: 0 0 10px 6px var(--primary-color-light) !important;
+}
+
+.search-results-wrap .action-buttons .jump-button {
+    background-color: var(--secondary-color);
+}
+
+.search-popout .date-picker .date-picker-hint .hint-value {
+    background: var(--accent-primary-color) !important;
+}
+
+.search-popout .date-picker .date-picker-hint {
+    border-top: none !important;
+}
+
+.search-popout .date-picker {
+    border-top: none !important;
+}
+
+.react-datepicker {
+    background-color: var(--primary-color-light) !important;
+    color: var(--secondary-color-light) !important;
+}
+
+.react-datepicker .react-datepicker__header {
+    background-color: transparent !important;
+}
+
+.react-datepicker .react-datepicker__day--disabled,
+.react-datepicker .react-datepicker__day--outside-month {
+    background-color: var(--secondary-color) !important;
+    color: var(--secondary-color-light) !important;
+}
+
+.react-datepicker .react-datepicker__day {
+    color: var(--text-light);
+    border-top: 1px solid var(--secondary-color) !important;
+    border-left: 1px solid var(--secondary-color) !important;
+}
+
+.react-datepicker .react-datepicker__month > .react-datepicker__week:last-of-type .react-datepicker__day {
+    border-bottom: 1px solid var(--secondary-color) !important;
+}
+
+.react-datepicker .react-datepicker__month .react-datepicker__week > .react-datepicker__day:last-of-type {
+    border-right: 1px solid var(--secondary-color) !important;
+}
+
+.react-datepicker .react-datepicker__day.react-datepicker__day--today:after {
+    background-color: var(--accent-primary-color) !important;
+}
+
+.react-datepicker .react-datepicker__day.react-datepicker__day--selected:hover, .react-datepicker .react-datepicker__day:hover {
+    background-color: var(--accent-primary-color) !important;
+}
+
+.header-toolbar button.popout-open {
+    background: var(--accent-primary-color);
+}
+
+.channel-pins-wrap {
+    background: var(--primary-color-dark) !important;
+}
+
+.channel-pins-wrap .header,
+.channel-pins-wrap .footer {
+    background-color: var(--primary-color-dark) !important;
+    box-shadow: none !important;
+}
+
+.channel-pins .message-group {
+    background-color: var(--primary-color) !important;
+}
+
+.channel-pins .message-group:hover {
+    box-shadow: 0 0 4px 5px var(--accent-secondary-color);
+    border-color: var(--accent-secondary-color) !important;
+}
+
+.channel-pins .message-group .action-buttons {
+    box-shadow: none !important;
+    background: none !important;
+}
+
+.channel-pins .message-group .action-buttons .jump-button {
+    background-color: var(--secondary-color) !important;
+}
+
+.spinner-wandering-cubes .spinner-item {
+    background-color: var(--accent-primary-color);
+    width: 15px;
+    height: 15px;
+    border-radius: 4px;
+}
+
+.chat .has-more button {
+    color: var(--accent-primary-color) !important;
+    background: var(--secondary-color) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.highlight {
+    color: var(--accent-primary-color);
+}
+
+.emoji-picker {
+    background: var(--primary-color-dark) !important;
+}
+
+.emoji-picker .search-bar {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    color: var(--text-color) !important;
+}
+
+.emoji-picker .search-bar .search-bar-inner {
+    background: var(--primary-color-dark) !important;
+}
+
+.emoji-picker .search-bar input {
+    background: var(--primary-color) !important;
+}
+
+.emoji-picker .search-bar-clear {
+    background: var(--primary-color);
+}
+
+.emoji-picker .sticky-header,
+.emoji-picker .search-bar {
+    background: var(--primary-color-dark) !important;
+}
+
+.emoji-picker .categories .item.selected {
+    border-bottom-color: var(--accent-primary-color);
+}
+
+.title-wrap {
+    border-bottom: 1px solid transparent !important;
+    background: var(--primary-color-light) !important;
+}
+
+.header-toolbar button.active {
+    background-color: var(--secondary-color);
+}
+
+.bot-tag,
+.need-help-modal .header {
+    background: var(--accent-primary-color);
+}
+
+.form header {
+    color: var(--accent-primary-color);
+}
+
+.markdown-modal,
+.form .form-inner,
+.form .form-header,
+.form .form-actions,
+.need-help-modal .footer,
+.markdown-modal .markdown-modal-footer {
+    background: var(--primary-color-dark) !important;
+}
+
+.alert.form .form-inner .btn {
+    padding: 0 !important;
+    border: none !important;
+}
+
+.channel-notification-settings .content label,
+.notification-settings-modal .mute-server .checkbox .label span {
+    color: var(--text-light);
+}
+
+.notification-settings-modal .notification-settings-modal-channel-settings-list {
+    box-shadow: none !important;
+}
+
+.markdown-modal .markdown-modal-header {
+    color: var(--text-light);
+}
+
+.form .form-header,
+.form .form-actions,
+.need-help-modal .footer,
+.channel-notification-settings,
+.markdown-modal .markdown-modal-header,
+.markdown-modal .markdown-modal-footer {
+    border-color: var(--secondary-color);
+}
+
+.modal-content .user-name {
+    color: var(--text-light);
+}
+
+.modal-content .form-inner p {
+    color: var(--text-color);
+}
+
+.chat .new-messages-bar {
+    background-color: var(--accent-secondary-color);
+}
+
+.chat .new-messages-bar:hover {
+    background-color: var(--accent-primary-color);
+}
+
+.chat .new-messages-bar button:last-child {
+    color: var(--text-color);
+}
+
+.chat .empty-message {
+    border: 0 !important;
+    background: transparent !important;
+    height: 40px;
+}
+
+.chat-empty {
+    background: var(--primary-color-dark);
+}
+
+.chat > .title-wrap > .title .channel-name {
+    color: var(--text-color);
+}
+
+.chat > .title-wrap > .topic {
+    font-size: 12px;
+    margin-top: 5px;
+    color: var(--secondary-color) !important;
+}
+
+.markdown-modal .highlight,
+.chat .title-wrap .topic .highlight {
+    background-color: var(--secondary-color-dark) !important;
+}
+
+.markdown-modal .highlight:hover,
+.chat .title-wrap .topic .highlight:hover {
+    background-color: var(--secondary-color) !important;
+    color: var(--accent-primary-color) !important;
+}
+
+.chat form {
+    border-top: none !important;
+}
+
+.messages-wrapper .messages .divider:before {
+    height: 0 !important;
+}
+
+.messages-wrapper .messages .divider span {
+    background-color: transparent !important;
+}
+
+.messages .divider,
+.messages .divider .divider-red > div {
+    opacity: 1 !important;
+}
+
+.messages .message-group:not(.has-divider) {
+    border-bottom-color: hsla(0, 0%, 100%, .04) !important;
+}
+
+.messages .message-group {
+    border-bottom: none !important;
+    padding: 10px 0;
+}
+
+.friends-table .messages .message-group .message-send-failed .markup,
+.friends-table .messages .message-group .message-send-failed .markup a,
+.messages .message-group .message-send-failed .markup,
+.messages .message-group .message-send-failed .markup a {
+    color: rgba(240, 71, 71, 0.5) !important;
+    font-style: italic;
+}
+
+.mentioned .message-text {
+    border-radius: 0 !important;
+    background: var(--mention-hilight) !important;
+}
+
+.mentioned .message-text:after {
+    border-radius: 0 !important;
+    border-color: var(--accent-primary-color) !important;
+    background: var(--mention-hilight) !important;
+}
+
+.messages a {
+    color: var(--accent-primary-color) !important;
+}
+
+.messages h2 .user-name {
+    color: var(--text-color);
+}
+
+.messages h2 span {
+    color: var(--secondary-color) !important;
+}
+
+.messages h2 .bot-tag {
+    color: var(--text-color) !important;
+}
+
+.messages .markup {
+    line-height: 1.4em !important;
+    color: var(--text-color) !important;
+}
+
+.markup pre {
+    border-radius: 0 !important;
+    background: transparent !important;
+    border-color: var(--secondary-color) !important;
+}
+
+.markup pre code.hljs {
+    background: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+    padding: 1em !important;
+}
+
+.modal-content .markup code.inline,
+.markup code.inline {
+    background: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+    padding: 0.3em 0.6em !important;
+    border-radius: 0 !important;
+}
+
+.messages .markup .highlight {
+    background-color: var(--accent-secondary-color) !important;
+    color: var(--text-color) !important;
+    padding: 1px 4px;
+    border-radius: 0;
+}
+
+.messages .markup .highlight:hover {
+    background-color: var(--accent-primary-color) !important;
+    color: var(--text-light) !important;
+}
+
+.messages .invite-button {
+    background: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+.emotewrapper img {
+    position: relative;
+    top: 7px;
+}
+
+.channel-textarea-upload {
+    border-right-color: var(--secondary-color) !important;
+}
+
+.channel-textarea-inner {
+    border: 2px solid var(--secondary-color) !important;
+    background: var(--primary-color-light) !important;
+}
+
+.channel-textarea-autocomplete-inner {
+    border: none !important;
+    background: var(--primary-color-dark) !important;
+}
+
+.channel-textarea-autocomplete-inner header {
+    border: none !important;
+    background: var(--accent-secondary-color) !important;
+    color: var(--text-light) !important;
+}
+
+.channel-textarea-autocomplete-inner ul li.active {
+    background: var(--secondary-color) !important;
+}
+
+.channel-textarea-guard button {
+    background: var(--accent-secondary-color) !important;
+}
+
+.channel-textarea-guard button:hover {
+    background: var(--accent-primary-color) !important;
+}
+
+.typing {
+    font-size: 11px;
+}
+
+.spoiler span {
+    display: none;
+}
+
+.spoiler:before {
+    min-height: 18px;
+    padding-top: 2px;
+    border-radius: 5px;
+    background: var(--primary-color);
+}
+
+#twitchcord-button {
+    background-size: 24px;
+    background: transparent 20px;
+    opacity: 0.4;
+}
+
+#twitchcord-button:hover,
+#twitchcord-button.twitchcord-button-open {
+    opacity: 1;
+}
+
+#twitchcord-button-container {
+    right: 30px !important;
+}
+
+/*** COMPACT MODE ***/
+
+.message-group.compact {
+    margin-left: 0;
+}
+
+.message-group.compact .timestamp {
+    color: var(--secondary-color-light) !important;
+    position: relative;
+    top: -1px;
+}
+
+.message-group.compact .message .markup .user-name {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+/*
+  __      _  friends list  _       _ _     _
+ / _|_ __(_) ___ _ __   __| |___  | (_)___| |_
+| |_| '__| |/ _ \ '_ \ / _` / __| | | / __| __|
+|  _| |  | |  __/ | | | (_| \__ \ | | \__ \ |_
+|_| |_|  |_|\___|_| |_|\__,_|___/ |_|_|___/\__|
+
+*/
+
+#friends .btn,
+.add-friend-popout .btn,
+.private-channels .channel.selected .icon-friends {
+    background-color: var(--accent-primary-color) !important;
+}
+
+.add-friend-popout .btn:disabled {
+    background-color: var(--accent-secondary-color) !important;
+    opacity: 0.4;
+}
+
+.private-channels .channel:hover:not(.selected) .icon-friends {
+    background-color: var(--accent-secondary-color) !important;
+}
+
+.private-channels .channel.btn-friends .badge {
+    margin-right: 10px;
+}
+
+.private-channels .channel .close {
+    margin-right: 5px;
+}
+
+#friends {
+    background: transparent !important;
+}
+
+.friends-header {
+    background: var(--primary-color-dark) !important;
+}
+
+.friends-table {
+    background: var(--primary-color-dark) !important;
+    margin-top: 0 !important;
+}
+
+.friends-header,
+.friends-table .friends-table-header {
+    border-bottom: 1px solid var(--secondary-color) !important;
+}
+
+.friends-header .tab-bar .tab-bar-separator,
+.friends-table .friends-table-header .friends-column-separator {
+    background-color: var(--secondary-color) !important;
+}
+
+.friends-table .friends-table-body {
+    padding-top: 20px !important;
+}
+
+.friends-table .friends-row:hover {
+    background: var(--primary-color) !important;
+}
+
+/*
+ user list section     _ _     _                   _   _
+ _   _ ___  ___ _ __  | (_)___| |_   ___  ___  ___| |_(_) ___  _ __
+| | | / __|/ _ \ '__| | | / __| __| / __|/ _ \/ __| __| |/ _ \| '_ \
+| |_| \__ \  __/ |    | | \__ \ |_  \__ \  __/ (__| |_| | (_) | | | |
+ \__,_|___/\___|_|    |_|_|___/\__| |___/\___|\___|\__|_|\___/|_| |_|
+
+*/
+
+.channel-members .invite-btn {
+    background: var(--accent-secondary-color);
+}
+
+.channel-members .invite-btn:hover {
+    background: var(--accent-primary-color);
+}
+
+.channel-members .member:hover {
+    background: var(--secondary-color-dark) !important;
+}
+
+.channel-members .member .member-username {
+    font-size: 12px;
+}
+
+.channel-members .member .member-game {
+    font-size: 10px;
+}
+
+.channel-members .avatar-small .status {
+    border-color: var(--primary-color) !important;
+}
+
+.channel-members h2 {
+    background: transparent;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 75px;
+    word-wrap: break-word;
+}
+
+.channel-members:hover h2 {
+    background: transparent;
+    padding-top: 10px;
+}
+
+.channel-members .member + h2 {
+    margin-top: 12px;
+}
+
+.channel-members h2:first-of-type {
+    margin-top: 0 !important;
+}
+
+/*
+  user info popout     _        __                                       _
+ _   _ ___  ___ _ __  (_)_ __  / _| ___    _ __   ___  _ __   ___  _   _| |_
+| | | / __|/ _ \ '__| | | '_ \| |_ / _ \  | '_ \ / _ \| '_ \ / _ \| | | | __|
+| |_| \__ \  __/ |    | | | | |  _| (_) | | |_) | (_) | |_) | (_) | |_| | |_
+ \__,_|___/\___|_|    |_|_| |_|_|  \___/  | .__/ \___/| .__/ \___/ \__,_|\__|
+                                          |_|         |_|
+*/
+
+.user-popout .header {
+    background: var(--primary-color-dark) !important;
+}
+
+.user-popout .avatar-wrapper .avatar-popout {
+    border: 4px solid var(--primary-color-dark);
+    background-color: var(--primary-color-dark);
+}
+
+.user-popout .body {
+    background: var(--primary-color);
+    border-left: 1px solid var(--secondary-color);
+    border-right: 1px solid var(--secondary-color);
+}
+
+.user-popout .footer {
+    background: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.quick-message {
+    color: var(--text-light);
+    border: 1px solid var(--secondary-color);
+    background: black;
+}
+
+.user-popout .username-wrapper .game,
+.user-popout .username-wrapper.hasNickname .discriminator,
+.user-popout .username-wrapper.hasNickname .username {
+    color: var(--primary-color);
+}
+
+.popout header,
+.slider-bar-fill {
+    background-color: var(--accent-primary-color);
+    border: 1px solid var(--accent-primary-color);
+}
+
+.user-popout .user-popout-options .btn {
+    background-color: var(--accent-secondary-color);
+    border: 1px solid var(--accent-secondary-color);
+}
+
+.user-popout .user-popout-options .btn:hover {
+    background-color: var(--accent-primary-color);
+    border: 1px solid var(--accent-primary-color);
+}
+
+/* Admin buttons */
+.user-popout .user-popout-options .btn.btn-server {
+    color: var(--text-color);
+    background: rgba(240, 71, 71, 0.4);
+    border: none !important;
+}
+
+.user-popout .user-popout-options .btn.btn-server:hover {
+    color: var(--text-light);
+    background: rgba(240, 71, 71, 1);
+    border: none !important;
+}
+
+/*
+ _  tool tips   _ _   _
+| |_ ___   ___ | | |_(_)_ __  ___
+| __/ _ \ / _ \| | __| | '_ \/ __|
+| || (_) | (_) | | |_| | |_) \__ \
+ \__\___/ \___/|_|\__|_| .__/|___/
+                       |_|
+*/
+
+.tooltip {
+    background: var(--accent-secondary-color);
+    color: var(--text-light);
+}
+
+.tooltip.tooltip-right:after {
+    border-right-color: var(--accent-secondary-color);
+}
+
+.tooltip.tooltip-top:after {
+    border-top-color: var(--accent-secondary-color);
+}
+
+.tooltip.tooltip-bottom:after {
+    border-bottom-color: var(--accent-secondary-color);
+}
+
+/*
+settings  _   _   _
+ ___  ___| |_| |_(_)_ __   __ _ ___
+/ __|/ _ \ __| __| | '_ \ / _` / __|
+\__ \  __/ |_| |_| | | | | (_| \__ \
+|___/\___|\__|\__|_|_| |_|\__, |___/
+                          |___/
+*/
+
+.ui-standard-sidebar-view {
+    background: transparent !important;
+}
+
+.ui-standard-sidebar-view .sidebar-region,
+.ui-standard-sidebar-view .content-region {
+    background: var(--primary-color-light) !important;
+}
+
+.ui-standard-sidebar-view .tools,
+.ui-standard-sidebar-view .tools .escape-text {
+    color: var(--text-color) !important;
+}
+
+.ui-standard-sidebar-view .btn-close {
+    border-color: var(--text-color) !important;
+}
+
+.ui-standard-sidebar-view .ui-card-primary {
+    background: var(--primary-color) !important;
+}
+
+.ui-button {
+    background-color: var(--accent-secondary-color) !important;
+    color: var(--text-color) !important;
+}
+
+.ui-tab-bar.SIDE .ui-tab-bar-item.selected {
+    background: var(--accent-secondary-color) !important;
+}
+
+.ui-tab-bar.SIDE .ui-tab-bar-item.brand {
+    color: var(--accent-secondary-color) !important;
+}
+
+.ui-switch-checkbox:checked + .ui-switch {
+    background: var(--accent-secondary-color) !important;
+}
+
+.ui-form-text.style-description,
+.ui-form-text.style-label-descriptor {
+    color: var(--text-color) !important;
+}
+
+.context-menu {
+    background: var(--primary-color-dark) !important;
+}
+
+.context-menu .item:hover,
+.context-menu .item-subMenu {
+    background-color: var(--secondary-color-dark) !important;
+}
+
+.avatar-uploader a {
+    color: var(--accent-primary-color);
+}
+
+.avatar-uploader a:hover {
+    color: var(--accent-secondary-color);
+}
+
+.settings .settings-header {
+    background: var(--primary-color) !important;
+}
+
+.form .btn-primary {
+    background-color: var(--accent-secondary-color);
+}
+
+.form .btn-primary:hover {
+    background-color: var(--accent-primary-color);
+}
+
+.user-settings-modal a {
+    color: var(--accent-secondary-color);
+}
+
+.user-settings-modal a:hover {
+    color: var(--accent-primary-color);
+}
+
+.channel-notification-settings .content .content-inner {
+    background: transparent !important;
+}
+
+.callout-backdrop {
+    opacity: 0.55;
+}
+
+.popout header,
+.slider-bar-fill {
+    border: none !important;
+}
+
+.slider-handle,
+.Select-control {
+    border: none !important;
+}
+
+.slider-bar {
+    background: var(--text-color);
+}
+
+.settings .settings-header {
+    background: var(--primary-color-dark) !important;
+}
+
+.settings .settings-inner,
+.settings .settings-actions {
+    background: var(--primary-color);
+}
+
+.settings .settings-actions {
+    border-top: none !important;
+}
+
+.form .radio-group .radio,
+.form .checkbox-group .checkbox,
+.checkbox .checkbox-inner + span {
+    color: var(--text-color) !important;
+    font-size: 0.95em;
+}
+
+.form .control-group input[type=email],
+.form .control-group input[type=password],
+.form .control-group input[type=text],
+.form .control-group textarea {
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid var(--secondary-color);
+    background: var(--primary-color-light);
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.form .control-group input[type=email]:focus,
+.form .control-group input[type=password]:focus,
+.form .control-group input[type=text]:focus,
+.form .control-group textarea:focus {
+    border-color: var(--secondary-color);
+    background: var(--primary-color);
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.form .Select-control,
+.form .Select-option {
+    border: 1px solid var(--secondary-color) !important;
+    background: var(--primary-color-light);
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.form .Select-option {
+    border-top: none !important;
+    background: var(--primary-color);
+    color: var(--secondary-color-light);
+}
+
+.form .Select-option.is-focused {
+    border-top: none !important;
+    background: black;
+    color: var(--text-light);
+}
+
+.Select-menu-outer {
+    background: var(--primary-color-light);
+    border: none !important;
+}
+
+.has-value > .Select-control > .Select-placeholder {
+    color: var(--text-color);
+}
+
+.form .btn-default {
+    padding: 10px 0 !important;
+    width: 75px;
+    height: 35px;
+    border-radius: 3px;
+}
+
+.form hr,
+.form .control-groups.control-separator,
+.instant-invites .instant-invites-header,
+.guild-settings-modal-integrations .guild-settings-modal-integrations-header,
+.guild-settings-modal-members .guild-settings-modal-members-header,
+.guild-settings-modal-members .guild-settings-modal-list .member + .member,
+.guild-settings-modal-members .guild-settings-modal-members-footer,
+#settings-roles .roles header,
+#user-profile-modal .tab-bar {
+    border-color: var(--secondary-color);
+    box-shadow: none;
+}
+
+.form .control-group input[type=email]:disabled,
+.form .control-group input[type=password]:disabled,
+.form .control-group input[type=text]:disabled,
+.form .control-group textarea:disabled {
+    background: var(--secondary-color) !important;
+}
+
+.guild-settings-modal-members {
+    background: none !important;
+}
+
+#settings-roles .roles {
+    border-right: 1px solid var(--secondary-color);
+}
+
+#settings-roles .roles li:hover:before {
+    background: var(--accent-secondary-color);
+}
+
+#settings-roles .roles li:hover:not(.selected) {
+    background: var(--primary-color-dark) !important;
+}
+
+#settings-roles .roles li.selected {
+    background: var(--primary-color-light) !important;
+}
+
+#settings-roles .roles li.selected:before {
+    background: var(--accent-primary-color);
+}
+
+.btn-help {
+    font-size: 11px;
+    background: var(--secondary-color);
+}
+
+.btn-help:hover,
+.radio:hover span:after {
+    background: var(--accent-secondary-color);
+}
+
+.radio .radio-inner span:after {
+    background: var(--accent-primary-color);
+}
+
+.user-settings-modal-keybinds .user-settings-modal-keybinds-header {
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.user-settings-modal .voice-settings .reset-voice-settings {
+    color: var(--accent-secondary-color);
+}
+
+.user-settings-modal .voice-settings .reset-voice-settings:hover {
+    color: var(--accent-secondary-color);
+    opacity: 0.6;
+}
+
+.user-settings-modal .premium-settings {
+    color: var(--text-color);
+}
+
+.user-settings-modal .premium-settings strong {
+    color: var(--text-color) !important;
+}
+
+.checkbox .checkbox-inner input[type=checkbox]:checked + span {
+    background: var(--accent-primary-color);
+    border-color: var(--accent-primary-color);
+}
+
+.user-settings-modal-connections .user-settings-modal-accounts-list .connect-container .name {
+    color: var(--text-color);
+}
+
+.user-settings-modal-connections .user-settings-modal-connections-list .connection .connection-integrations.no-integrations {
+    color: var(--text-color);
+}
+
+.user-settings-modal-connections .user-settings-modal-connections-list .connection .connection-integrations {
+    border-color: #643DA7 !important;
+}
+
+.user-settings-modal-connections .user-settings-modal-connections-list {
+    box-shadow: 0 -1px var(--secondary-color);
+}
+
+.tab-bar.TOP {
+    border-color: var(--secondary-color);
+}
+
+.tab-bar.TOP .tab-bar-item.selected {
+    border-color: var(--accent-primary-color);
+    color: var(--accent-primary-color);
+}
+
+.user-settings-streamer-mode {
+    background: none;
+}
+
+.user-settings-modal-games {
+    background: var(--secondary-color-dark) !important;
+    border: none !important;
+}
+
+.user-settings-modal-games .games-table .games-row .item-game,
+.user-settings-modal-games .games-table .games-row .item-overlay {
+    border-color: var(--secondary-color) !important;
+}
+
+.user-settings-modal-games .games-table .games-row .item-game .game-input,
+.user-settings-modal-games .games-table .games-row .item-game .game-name {
+    color: var(--text-light);
+}
+
+.user-settings-modal-games .games-table .games-row .item-game .last-played {
+    color: var(--text-color);
+}
+
+.now-playing {
+    background: var(--accent-primary-color) !important;
+}
+
+.now-playing.no-detection {
+    background: var(--primary-color);
+}
+
+.CodeMirror {
+    background: var(--secondary-color) !important;
+    border-radius: 0;
+    color: var(--text-color) !important;
+}
+
+.CodeMirror-gutters {
+    background: var(--secondary-color) !important;
+    border: none !important;
+}
+
+.CodeMirror-linenumber {
+    color: var(--text-light) !important;
+}
+
+.cm-s-neat span.cm-builtin {
+    color: var(--accent-primary-color);
+}
+
+.cm-s-neat span.cm-atom,
+.cm-s-neat span.cm-number {
+    color: var(--accent-primary-color);
+}
+
+.member-roles .member-role {
+    background-color: var(--secondary-color);
+    border: none;
+    padding: 6px 8px;
+    color: var(--text-light);
+}
+
+.popout section {
+    background: var(--primary-color-dark) !important;
+}
+
+.popout.popout-bottom header:before {
+    border-bottom-color: var(--accent-secondary-color);
+}
+
+#autocomplete-popout .row.selected,
+#autocomplete-popout .row:hover {
+    background: var(--secondary-color) !important;
+}
+
+#permissions .permission-actions {
+    color: var(--text-color) !important;
+}
+
+#autocomplete-popout .empty h4,
+#permissions .permissions-helpdesk,
+.guild-settings-modal-members .guild-settings-modal-members-footer a {
+    color: var(--accent-primary-color);
+}
+
+#permissions .permissions-helpdesk:hover,
+.guild-settings-modal-members .guild-settings-modal-members-footer a:hover {
+    color: var(--accent-secondary-color);
+}
+
+/*#user-profile-modal .header,*/
+
+#user-profile-modal .header {
+    background: var(--primary-color-dark) none !important;
+    color: var(--text-color);
+}
+
+#user-profile-modal .btn {
+    background: var(--accent-primary-color);
+}
+
+#user-profile-modal .btn:hover {
+    background: var(--accent-secondary-color);
+}
+
+#user-profile-modal .guilds .section .connected-accounts .connected-account {
+    border: 1px solid var(--secondary-color);
+    background: var(--primary-color);
+}
+
+#user-profile-modal .sub-header,
+#user-profile-modal .tab-bar-container,
+#user-profile-modal .scroller,
+#user-profile-modal .empty,
+#user-profile-modal footer {
+    background: var(--primary-color-dark) !important;
+}
+
+#user-profile-modal .tab-bar-container {
+    border-bottom: 1px solid var(--secondary-color) !important;
+}
+
+#user-profile-modal .guilds .section + .section {
+    border-top: 1px solid var(--secondary-color) !important;
+}
+
+#user-profile-modal .guilds .guild:hover {
+    background: var(--secondary-color) !important;
+    color: var(--text-color);
+}
+
+#user-profile-modal .avatar-profile {
+    width: 126px !important;
+    height: 126px !important;
+}
+
+#user-profile-modal .header .header-info .header-info-inner .discord-tag {
+    font-size: 22px !important;
+    font-weight: bold !important;
+}
+
+#user-profile-modal .avatar-wrapper {
+    background-color: transparent;
+}
+
+.emoji-picker {
+    background-color: var(--primary-color-dark) !important;
+    border: 0 solid var(--secondary-color) !important;
+    border-top: none !important;
+}
+
+.emoji-picker .search-bar,
+.emoji-picker .category {
+    background-color: var(--primary-color) !important;
+    border: 0 solid var(--secondary-color) !important;
+    border-top: none !important;
+}
+
+.instant-invite-modal {
+    background: none;
+}
+
+#instant-invite-modal .copy {
+    background-color: var(--accent-primary-color);
+}
+
+#instant-invite-modal .clipboard-input-inner input {
+    color: var(--accent-primary-color);
+}
+
+.popout-menu {
+    background: transparent !important;
+}
+
+.popout-menu.status-picker {
+    background: transparent;
+    width: 322px !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.popout-menu .popout-menu-separator {
+    border-bottom: 1px solid var(--secondary-color) !important;
+}
+
+.popout-menu .popout-menu-item {
+    background: var(--primary-color-dark) !important;
+}
+
+.popout-top .popout-menu .popout-menu-item {
+    color: var(--text-color) !important;
+}
+
+.popout-menu .popout-menu-item:hover {
+    background-color: var(--accent-secondary-color) !important;
+    color: var(--text-color) !important;
+}
+
+.popout-top {
+    top: auto !important;
+    bottom: -126px !important;
+}
+
+.popout-bottom:not(.no-arrow):not(.search-popout) {
+    left: 191px !important;
+}
+
+.themed-popout {
+    background-color: var(--primary-color-dark) !important;
+    border: 1px solid var(--secondary-color) !important;
+}
+
+.themed-popout .header, .themed-popout .footer {
+    background-color: var(--primary-color-light) !important;
+}
+
+.themed-popout .messages-popout .message-group {
+    border-color: rgba(28, 36, 43, 0) !important;
+    background-color: var(--primary-color-dark) !important;
+    box-shadow: 0 0 10px 6px var(--primary-color-light) !important;
+}
+
+.themed-popout .messages-popout .message-group:hover .action-buttons {
+    box-shadow: 0 0 6px 4px var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+}
+
+.themed-popout .messages-popout .message-group:hover .action-buttons .jump-button {
+    background-color: var(--secondary-color-dark) !important;
+}
+
+.quickswitcher {
+    background: var(--primary-color-dark) !important;
+}
+
+.quickswitcher .big-input {
+    background: black !important;
+}
+
+.quickswitcher {
+    background: var(--primary-color-dark) !important;
+}
+
+.quickswitcher .search-bar {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding-left: 91px;
+    margin-left: -81px;
+}
+
+.quickswitcher .search-bar .search-bar-inner {
+    background: black !important;
+}
+
+.quickswitcher .search-bar input {
+    background: var(--primary-color) !important;
+}
+
+.quickswitcher .search-bar-clear {
+    background: var(--primary-color);
+}
+
+.quickswitcher .sticky-header,
+.quickswitcher .search-bar {
+    background: var(--primary-color-dark) !important;
+}
+
+.quickswitcher .categories .item.selected {
+    border-bottom-color: var(--accent-primary-color);
+}
+
+.quickswitcher {
+    background-color: var(--primary-color-dark) !important;
+    border: 0 solid var(--secondary-color) !important;
+    border-top: none !important;
+}
+
+.quickswitcher .search-bar,
+.quickswitcher .category {
+    background-color: var(--primary-color) !important;
+    border: 0 solid var(--secondary-color) !important;
+    border-top: none !important;
+}

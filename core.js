@@ -31,7 +31,9 @@ global.openWelcomeModal = () => {
    </div>
 `;
     document.getElementById('boot-modal').style = '';
-}
+};
+
+
 if (typeof (global.config.showsOnBoot) === "undefined") {
     global.config.showsOnBoot = true;
     saveConfig();
@@ -39,30 +41,35 @@ if (typeof (global.config.showsOnBoot) === "undefined") {
 global.toggleShowsOnBoot = () => {
     global.config.showsOnBoot = !global.config.showsOnBoot;
     saveConfig();
-}
+};
+
 if (global.config.showsOnBoot === true)
     global.openWelcomeModal();
 
 global.getFileOpener = () => {
     switch (process.platform) {
-        case 'darwin': return 'open';
-        case 'win32': return 'start notepad';
-        case 'win64': return 'start notepad';
-        default: return 'xdg-open';
+        case 'darwin':
+            return 'open';
+        case 'win32':
+            return 'start notepad';
+        case 'win64':
+            return 'start notepad';
+        default:
+            return 'xdg-open';
     }
-}
+};
 
 global.openTextFile = (filePath) => {
     const sys = require('sys');
     const exec = require('child_process').exec;
 
     exec(getFileOpener() + ' ' + filePath);
-}
+};
 
 setInterval(() => {
     if (document.getElementsByClassName('change-log-button-container').length == 0)
         return;
     const parent = document.getElementsByClassName('change-log-button-container')[0];
     if (!parent.innerHTML.includes('MyDiscord'))
-        parent.innerHTML  += `<a class="change-log-button" onclick="global.openWelcomeModal()">MyDiscord</a>`;
-}, 500); 
+        parent.innerHTML += `<a class="change-log-button" onclick="global.openWelcomeModal()">MyDiscord</a>`;
+}, 500);

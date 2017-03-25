@@ -10,17 +10,19 @@ import sys
 from collections import namedtuple
 from mydiscord.asar import Asar
 
-
 DiscordProcess = namedtuple('DiscordProcess', 'path exe processes')
+
 
 def discord_process_terminate(self):
     for process in self.processes:
         # terrible
         process.kill()
 
+
 def discord_process_launch(self):
     with open(os.devnull, 'w') as f:
         subprocess.Popen([os.path.join(self.path, self.exe)], stdout=f, stderr=subprocess.STDOUT)
+
 
 def discord_process_resources_path(self):
     if sys.platform == 'darwin':
@@ -32,9 +34,11 @@ def discord_process_resources_path(self):
         return os.path.join('/Applications/', '%s.app' % self.exe, 'Contents/Resources')
     return os.path.join(self.path, 'resources')
 
+
 DiscordProcess.terminate = discord_process_terminate
 DiscordProcess.launch = discord_process_launch
 DiscordProcess.resources_path = property(discord_process_resources_path)
+
 
 def parse_args():
     description = """\
@@ -46,9 +50,11 @@ Discord will close and then be relaunched when the tool completes.
     parser = argparse.ArgumentParser(description=description.strip())
     parser.add_argument('--css', metavar='file', help='Location of the CSS file to watch')
     parser.add_argument('--js', metavar='file', help='Location of the JS file to inject')
-    parser.add_argument('--revert', action='store_true', help='Reverts any changes made to Discord (does not delete CSS)')
+    parser.add_argument('--revert', action='store_true',
+                        help='Reverts any changes made to Discord (does not delete CSS)')
     args = parser.parse_args()
     return args
+
 
 def discord_process():
     executables = {}
@@ -91,6 +97,7 @@ def discord_process():
                 key = lookup[index]
                 return executables[key]
 
+
 def extract_asar():
     try:
         with Asar.open('./app.asar') as a:
@@ -111,6 +118,7 @@ def extract_asar():
         print('WARNING: app.asar not found')
     return True
 
+
 def main():
     args = parse_args()
     try:
@@ -123,11 +131,13 @@ def main():
         args.css = os.path.abspath(args.css)
     else:
         args.css = os.path.join(discord.resources_path, 'discord-custom.css')
-    
+
     if args.js:
         args.js = os.path.abspath(args.js)
     else:
         args.js = os.path.join(discord.resources_path, 'discord-custom.js')
+
+    core_js = os.path.join(discord.resources_path, 'core.js')
 
     os.chdir(discord.resources_path)
 
@@ -151,15 +161,16 @@ def main():
                     f.write('/* put your custom css here. */\n')
             if not os.path.exists(args.js):
                 with open(args.js, 'w') as f:
-                    f.write(textwrap.dedent("""\
+                    f.write(textwrap.dedent("""
                     /*
                     * Hold Up!
                     * Pasting anything in here could give attackers access to your Discord account.
                     * Unless you understand exactly what you are doing, close this document and stay safe.
                     */
 
-                    // Make this array empty to not load the core plugin. (If you delete it, it will still load it.) I don't recommend removing this as it will remove all GUI functionality!
-                    global.plugins = [ 'https://raw.githubusercontent.com/justinoboyle/mydiscord/master/core.js' ];
+                    // Make this array empty to not load the core plugin. (If you delete it, it will still load it.) 
+                    // I don't recommend removing this as it will remove all GUI functionality!
+                    global.plugins = [ 'core.js' ];
 
                     if(global.config.plugins)
                         for(let plugin of global.config.plugins)
@@ -167,96 +178,179 @@ def main():
 
                     // To load more plugins (below) -- don't recreate the array! **use global.loadPlugin(link)**
 
-                    // You probably don't actually need to touch this file if you're using the proper plugin installation system through core.js
+                    // You probably don't actually need to touch this file
+                    // if you're using the proper plugin installation system through core.js
                     """))
 
-            css_injection_script = textwrap.dedent("""\
+            if not os.path.exists(core_js):
+                with open(core_js, 'w') as f:
+                    f.write(textwrap.dedent("""
+                    global.modal = document.createElement('div');
+                    global.modal.id = 'boot-modal';
+
+                    global._fs = require('fs');
+
+                    document.getElementsByTagName('body')[0].appendChild(global.modal);
+
+                    global.openWelcomeModal = () => {
+                        global.modal.innerHTML = `
+                       <div class="callout-backdrop" style="opacity: 0.85; background-color: rgb(0, 0, 0); transform: translateZ(0px);"></div>
+                       <div class="modal" style="opacity: 1; transform: scale(1) translateZ(0px);">
+                          <div class="modal-inner">
+                             <form class="form" style="background: #212121;border:none;">
+                                <div class="form-header" style="background: #252525;border:none;">
+                                   <header>MyDiscord has been installed.</header>
+                                </div>
+                                <div class="form-inner" style="background: #212121;border:none;">
+                                   <div class="help-text" style="color: white">
+                                    MyDiscord has just been installed, congrats!<br /><br />
+                                    You can <a style="text-decoration:none;color:#697ec4" href="#" onclick="global.openTextFile(global.cssFile)">edit your styles</a> (which hot-reload, awesome!), <br /><br />
+                                    Or <a style="text-decoration:none;color:#697ec4" href="#" onclick="global.openTextFile(global.pluginFile)">edit your scripts</a> (<strong>Do not enter code that you don't understand... seriously!</strong>) <br /><br />
+                                    Anyway, enjoy MyDiscord!
+                                    </div>
+                                </div>
+                                <div class="form-actions" style="background: #252525;border:none;">
+                                    <a href="#" style="text-decoration:none;background:none;" class="btn btn-default" onclick="setTimeout(() => { global.toggleShowsOnBoot(); document.getElementById('boot-modal').style='display:none;' }, 1);">${(global.config.showsOnBoot) ? "Don't show on boot" : "Show on boot"}</a>
+                                    <a href="#" style="text-decoration:none;" class="btn btn-primary" onclick="setTimeout(() => document.getElementById('boot-modal').style='display:none;', 1);">Let's go</a>
+                                </div>
+                             </form>
+                          </div>
+                       </div>
+                    `;
+                        document.getElementById('boot-modal').style = '';
+                    };
+
+                    if (typeof (global.config.showsOnBoot) === "undefined") {
+                        global.config.showsOnBoot = true;
+                        saveConfig();
+                    }
+                    global.toggleShowsOnBoot = () => {
+                        global.config.showsOnBoot = !global.config.showsOnBoot;
+                        saveConfig();
+                    };
+
+                    if (global.config.showsOnBoot === true)
+                        global.openWelcomeModal();
+                    };
+
+                    global.getFileOpener = () => {
+                        switch (process.platform) {
+                            case 'darwin':
+                                return 'open';
+                            case 'win32':
+                                return 'start notepad';
+                            case 'win64':
+                                return 'start notepad';
+                            default:
+                                return 'xdg-open';
+                        }
+                    };
+
+                    global.openTextFile = (filePath) => {
+                        const sys = require('sys');
+                        const exec = require('child_process').exec;
+
+                        exec(getFileOpener() + ' ' + filePath);
+                    };
+
+                    setInterval(() => {
+                        if (document.getElementsByClassName('change-log-button-container').length == 0)
+                            return;
+                        const parent = document.getElementsByClassName('change-log-button-container')[0];
+                        if (!parent.innerHTML.includes('MyDiscord'))
+                            parent.innerHTML += `<a class="change-log-button" onclick="global.openWelcomeModal()">MyDiscord</a>`;
+                    }, 500);
+                    """))
+
+            css_injection_script = textwrap.dedent("""
                 window._fs = require("fs");
                 window._fileWatcher = null;
                 window._styleTag = null;
                 window._request = require('request');
 
+                global.cssFile = '%s';
+                global.pluginFile = '%s';
                 global.config = {};
 
                 try {
                     global.config = require(global.pluginFile + '.config.json')
-                }catch(e) {
+                } catch (e) {
                     // It doesn't exist, that's OK
                 }
 
                 global.saveConfig = () => {
                     _fs.writeFile(global.pluginFile + '.config.json', JSON.stringify(global.config, null, 4), 'utf-8');
-                }
+                };
                 saveConfig();
-                
-                window.setupCSS = function(path) {
-                  var customCSS = window._fs.readFileSync(path, "utf-8");
-                  if(window._styleTag === null) {
-                    window._styleTag = document.createElement("style");
-                    document.head.appendChild(window._styleTag);
-                  }
-                  window._styleTag.innerHTML = customCSS;
-                  if(window._fileWatcher === null) {
-                    window._fileWatcher = window._fs.watch(path, { encoding: "utf-8" },
-                      function(eventType, filename) {
-                        if(eventType === "change") {
-                          var changed = window._fs.readFileSync(path, "utf-8");
-                          window._styleTag.innerHTML = changed;
-                        }
-                      }
-                    );
-                  }
+
+                window.setupCSS = function (path) {
+                    var customCSS = window._fs.readFileSync(path, "utf-8");
+                    if (window._styleTag === null) {
+                        window._styleTag = document.createElement("style");
+                        document.head.appendChild(window._styleTag);
+                    }
+                    window._styleTag.innerHTML = customCSS;
+                    if (window._fileWatcher === null) {
+                        window._fileWatcher = window._fs.watch(path, {encoding: "utf-8"},
+                            function (eventType, filename) {
+                                if (eventType === "change") {
+                                    window._styleTag.innerHTML = window._fs.readFileSync(path, "utf-8");
+                                }
+                            }
+                        );
+                    }
                 };
 
-                window.tearDownCSS = function() {
-                  if(window._styleTag !== null) { window._styleTag.innerHTML = ""; }
-                  if(window._fileWatcher !== null) { window._fileWatcher.close(); window._fileWatcher = null; }
+                window.tearDownCSS = function () {
+                    if (window._styleTag !== null) {
+                        window._styleTag.innerHTML = "";
+                    }
+                    if (window._fileWatcher !== null) {
+                        window._fileWatcher.close();
+                        window._fileWatcher = null;
+                    }
                 };
 
-                window.applyAndWatchCSS = function(path) {
-                  window.tearDownCSS();
-                  window.setupCSS(path);
+                window.applyAndWatchCSS = function (path) {
+                    window.tearDownCSS();
+                    window.setupCSS(path);
                 };
                 global.loadedPlugins = {};
                 global.loadPlugins = () => {
-                    for(let x of global.plugins)
+                    for (let x of global.plugins)
                         loadPlugin(x, false);
-                }
+                };
 
                 global.loadPlugin = (x, push = true) => {
-                    if(push)
-                    global.plugins.push(x);
-                    if(typeof(global._request) === "undefined")
+                    if (push)
+                        global.plugins.push(x);
+                    if (typeof(global._request) === "undefined")
                         global._request = require('request');
-                    if(!global.loadedPlugins[x])
-                    global._request(x, function (error, response, body) {
-                        if (!error && response.statusCode == 200) {
-                            eval(body);
-                        }
-                    })
-                }
+                    if (!global.loadedPlugins[x])
+                        require(x);
+                };
 
-                window.runPluginFile = function(path) {
+                window.runPluginFile = function (path) {
                     try {
-                        _fs.readFile(path, 'utf-8', function(err, res) {
-                            if(err)
+                        _fs.readFile(path, 'utf-8', function (err, res) {
+                            if (err)
                                 return console.error(err);
                             eval(res);
-                        if(typeof(global._request) === "undefined")
-                            global._request = require('request');
-                        if(!global.plugins)
-                            global.plugins = [ 'https://raw.githubusercontent.com/justinoboyle/mydiscord/master/core.js' ];
+                            if (typeof(global._request) === "undefined")
+                                global._request = require('request');
+                            if (!global.plugins)
+                                global.plugins = ['%s'];
                             global.loadPlugins();
                         })
-                    }catch(e) {
+                    } catch (e) {
                         console.error(e);
                     }
-                }
-                global.cssFile = '%s';
-                global.pluginFile = '%s';
+                };
                 window.applyAndWatchCSS(global.cssFile);
-                window.runPluginFile(global.pluginFile)
-            """ % (args.css.replace('\\', '\\\\'), args.js.replace('\\', '\\\\')))
+                window.runPluginFile(global.pluginFile);
+            """ % (args.css.replace('\\', '\\\\'),
+                   args.js.replace('\\', '\\\\'),
+                   core_js))
 
             with open('./app/cssInjection.js', 'w') as f:
                 f.write(css_injection_script)
@@ -274,7 +368,8 @@ def main():
             with open('./app/index.js', 'r') as f:
                 entire_thing = f.read()
 
-            entire_thing = entire_thing.replace("mainWindow.webContents.on('dom-ready', function () {});", css_reload_script)
+            entire_thing = entire_thing.replace(
+                "mainWindow.webContents.on('dom-ready', function () {});", css_reload_script)
 
             with open('./app/index.js', 'w') as f:
                 f.write(entire_thing)

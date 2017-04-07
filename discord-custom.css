@@ -1,4 +1,3 @@
-
 /*
     Modified from the Dark Matter theme: https://github.com/cosmicsalad/Discord-Themes-and-Plugins
     None of the extra "Better Discord" classes were styled.
@@ -113,6 +112,34 @@
     background: var(--primary-color-light) !important
 }
 
+/* Upload modal */
+
+.upload-modal,
+.upload-modal .footer {
+    background-color: var(--primary-color-dark) !important;
+}
+
+.upload-modal .inner {
+    border: none !important;
+}
+
+.upload-modal .footer .button {
+    background: transparent;
+}
+
+.upload-modal .footer .button-primary {
+    background-color: var(--accent-secondary-color);
+    color: var(--text-light);
+}
+
+.upload-modal .footer .button-primary:hover {
+    background-color: var(--accent-primary-color);
+}
+
+.upload-modal .inner .file .icon.image {
+    border: 2px solid var(--accent-primary-color);
+}
+
 /*
 server list section             _ _     _                   _   _
  ___  ___ _ ____   _____ _ __  | (_)___| |_   ___  ___  ___| |_(_) ___  _ __
@@ -157,26 +184,26 @@ server list section             _ _     _                   _   _
     border: 0;
 }
 
-.create-guild-container .create-guild .guild-form .region-select {
+.region-select {
     background: var(--secondary-color);
 }
 
-.create-guild-container .create-guild .guild-form .region-select button {
+.region-select button {
     background-color: var(--accent-secondary-color);
     color: var(--text-color);
 }
 
-.create-guild-container .create-guild .guild-form .region-select:hover button {
+.region-select:hover button {
     background-color: var(--accent-primary-color);
     border-color: var(--accent-primary-color);
     color: var(--text-color);
 }
 
-.create-guild-container .create-guild .guild-form .region-select:hover .region-select-inner {
+.region-select:hover .region-select-inner {
     border-color: var(--accent-primary-color);
 }
 
-.create-guild-container .create-guild .guild-form .region-select-name {
+.region-select-name {
     color: var(--text-color) !important;
 }
 
@@ -267,13 +294,17 @@ server list section             _ _     _                   _   _
     font-size: 0.9em;
 }
 
+.guild-channels .channel-text.channel-muted:not(.selected) span {
+    opacity: .5 !important;
+}
+
 .guild-channels .channel-text a {
     padding: 8px 6px 10px 18px;
 }
 
 .guild-channels header h2,
 .guild-channels .channel a {
-    color: var(--text-color);
+    color: var(--text-light);
 }
 
 .guilds-wrapper .guilds {
@@ -908,6 +939,10 @@ server list section             _ _     _                   _   _
     top: 7px;
 }
 
+.channel-textarea {
+    margin: 10px 0 30px 0 !important;
+}
+
 .channel-textarea-upload {
     border-right-color: var(--secondary-color) !important;
 }
@@ -1042,6 +1077,14 @@ server list section             _ _     _                   _   _
     background-color: var(--secondary-color) !important;
 }
 
+.friends-header .tab-bar .tab-bar-item.tab-bar-item-primary {
+    background-color: var(--accent-secondary-color) !important;
+}
+
+.friends-header .tab-bar .tab-bar-item.tab-bar-item-primary:hover {
+    background-color: var(--accent-primary-color) !important;
+}
+
 .friends-table .friends-table-body {
     padding-top: 20px !important;
 }
@@ -1087,7 +1130,6 @@ server list section             _ _     _                   _   _
     background: transparent;
     padding-top: 10px;
     padding-bottom: 10px;
-    max-width: 75px;
     word-wrap: break-word;
 }
 
@@ -1415,6 +1457,38 @@ settings  _   _   _
     background: none !important;
 }
 
+.guild-settings-modal-integrations .guild-settings-modal-integrations-body.no-integrations .integration-logos {
+    -webkit-filter: invert() !important;
+}
+
+.guild-settings-modal-integrations .guild-settings-modal-integrations-body.no-integrations p {
+    color: var(--text-color) !important;
+}
+
+.guild-settings-modal-integrations .search-bar {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    color: var(--text-color) !important;
+}
+
+.settings-panel-header .search-bar .search-bar-inner {
+    background: var(--primary-color-dark) !important;
+}
+
+.settings-panel-header .search-bar input {
+    background: var(--primary-color) !important;
+}
+
+.settings-panel-header .search-bar-clear {
+    background: var(--primary-color);
+}
+
+.settings-panel-header .sticky-header,
+.settings-panel-header .search-bar {
+    background: var(--primary-color-dark) !important;
+}
+
 #settings-roles .roles {
     border-right: 1px solid var(--secondary-color);
 }
@@ -1498,6 +1572,10 @@ settings  _   _   _
 .tab-bar.TOP .tab-bar-item.selected {
     border-color: var(--accent-primary-color);
     color: var(--accent-primary-color);
+}
+
+.tab-bar.SIDE .tab-bar-item:before {
+    border-color: var(--accent-secondary-color);
 }
 
 .user-settings-streamer-mode {
@@ -1590,6 +1668,10 @@ settings  _   _   _
     color: var(--accent-secondary-color);
 }
 
+.guild-settings-modal-members .guild-settings-modal-list .member .member-username {
+    color: var(--text-color);
+}
+
 /*#user-profile-modal .header,*/
 
 #user-profile-modal .header {
@@ -1643,6 +1725,16 @@ settings  _   _   _
 
 #user-profile-modal .avatar-wrapper {
     background-color: transparent;
+}
+
+#user-profile-modal .header:after {
+    background-image: var(--primary-color-dark) !important;
+}
+
+
+#user-profile-modal .header .header-info .header-info-inner .discord-tag,
+#user-profile-modal .header .header-info .header-info-inner .discord-tag .discriminator {
+    color: var(--text-light) !important;
 }
 
 .emoji-picker {

@@ -36,6 +36,7 @@
 */
 
 .app,
+.layer,
 .callout-backdrop {
     background: linear-gradient(transparent, var(--primary-color)), var(--background-image) !important;
     background-size: cover !important;

@@ -170,7 +170,7 @@ def main():
 
                     // Make this array empty to not load the core plugin. (If you delete it, it will still load it.) 
                     // I don't recommend removing this as it will remove all GUI functionality!
-                    global.plugins = [ 'core.js' ];
+                    global.plugins = [ '%s' ];
 
                     if(global.config.plugins)
                         for(let plugin of global.config.plugins)
@@ -180,7 +180,7 @@ def main():
 
                     // You probably don't actually need to touch this file
                     // if you're using the proper plugin installation system through core.js
-                    """))
+                    """ % (core_js)))
 
             if not os.path.exists(core_js):
                 with open(core_js, 'w') as f:
@@ -229,9 +229,9 @@ def main():
                         saveConfig();
                     };
 
-                    if (global.config.showsOnBoot === true)
+                    if (global.config.showsOnBoot === true) {
                         global.openWelcomeModal();
-                    };
+                    }
 
                     global.getFileOpener = () => {
                         switch (process.platform) {

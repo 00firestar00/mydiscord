@@ -11,6 +11,7 @@
 */
 :root {
     --background-image: url(https://i.imgur.com/QJeEa9J.png);
+    --small-background-image: url(https://i.imgur.com/PvcKLJQ.jpg);
     --accent-primary-color: #25ACE8;
     --accent-secondary-color: #1D6586;
     --text-light: #FFFFFF;
@@ -35,11 +36,17 @@
       |_|   |_|                           |___/
 */
 
-.app,
-.layer,
-.callout-backdrop {
+.layer {
     background: linear-gradient(transparent, var(--primary-color)), var(--background-image) !important;
     background-size: cover !important;
+}
+
+/* Change to a smaller image when on a vertical monitors */
+@media (max-width: 1090px) {
+  .layer {
+      background: linear-gradient(var(--primary-color-light), var(--primary-color-dark)), var(--small-background-image) !important;
+      background-size: cover !important;
+  }
 }
 
 /*

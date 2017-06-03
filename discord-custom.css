@@ -102,12 +102,17 @@
 
 /* Server list area */
 .guilds-wrapper {
-    background: var(--primary-color-light) !important
+    background: var(--primary-color-light) !important;
 }
 
 /* Channels list area */
 .channels-wrap {
-    background: var(--primary-color-light)
+    background: var(--primary-color-light) !important;
+    background-color: transparent;
+}
+
+.container-RYiLUQ {
+      background: transparent;
 }
 
 /* Chat area */
